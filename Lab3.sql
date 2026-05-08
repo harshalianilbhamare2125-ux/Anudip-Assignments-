@@ -1,6 +1,6 @@
-mysql> use ecommerce;
+mysql> use ecommerce;   -- Select ecommerce database
 Database changed
-mysql> show tables;
+mysql> show tables;   -- Show all tables
 +---------------------+
 | Tables_in_ecommerce |
 +---------------------+
@@ -11,7 +11,7 @@ mysql> show tables;
 +---------------------+
 4 rows in set (0.07 sec)
 
-mysql> select * from customer;
+mysql> select * from customer;    -- Display all records from customer table
 +-------------+---------------+--------+--------------------+---------+------------+----------+---------+-------+---------+
 | customer_id | customer_name | city   | email              | address | phone_n0   | pin_code | bill_no | state | country |
 +-------------+---------------+--------+--------------------+---------+------------+----------+---------+-------+---------+
@@ -20,11 +20,11 @@ mysql> select * from customer;
 +-------------+---------------+--------+--------------------+---------+------------+----------+---------+-------+---------+
 2 rows in set (0.01 sec)
 
-mysql> update customer set phone_n0 = '9876543567' where customer_id='C101';
+mysql> update customer set phone_n0 = '9876543567' where customer_id='C101';   -- Update phone number of customer C101
 Query OK, 1 row affected (0.02 sec)
 Rows matched: 1  Changed: 1  Warnings: 0
 
-mysql> select * from customer;
+mysql> select * from customer;    -- Display updated customer table
 +-------------+---------------+--------+--------------------+---------+------------+----------+---------+-------+---------+
 | customer_id | customer_name | city   | email              | address | phone_n0   | pin_code | bill_no | state | country |
 +-------------+---------------+--------+--------------------+---------+------------+----------+---------+-------+---------+
@@ -33,10 +33,10 @@ mysql> select * from customer;
 +-------------+---------------+--------+--------------------+---------+------------+----------+---------+-------+---------+
 2 rows in set (0.00 sec)
 
-mysql> select * from customer where customer_name like '%al';
+mysql> select * from customer where customer_name like '%al';   -- Search customer names ending with 'al'
 Empty set (0.01 sec)
 
-mysql> select * from customer where customer_name like '%li';
+mysql> select * from customer where customer_name like '%li';    -- Search customer names ending with 'li'
 +-------------+---------------+--------+--------------------+---------+------------+----------+---------+-------+---------+
 | customer_id | customer_name | city   | email              | address | phone_n0   | pin_code | bill_no | state | country |
 +-------------+---------------+--------+--------------------+---------+------------+----------+---------+-------+---------+
@@ -45,7 +45,7 @@ mysql> select * from customer where customer_name like '%li';
 +-------------+---------------+--------+--------------------+---------+------------+----------+---------+-------+---------+
 2 rows in set (0.00 sec)
 
-mysql> select * from customer where customer_name like '%ha%';
+mysql> select * from customer where customer_name like '%ha%';      -- Search customer names containing 'ha'
 +-------------+---------------+--------+--------------------+---------+------------+----------+---------+-------+---------+
 | customer_id | customer_name | city   | email              | address | phone_n0   | pin_code | bill_no | state | country |
 +-------------+---------------+--------+--------------------+---------+------------+----------+---------+-------+---------+
@@ -53,7 +53,7 @@ mysql> select * from customer where customer_name like '%ha%';
 +-------------+---------------+--------+--------------------+---------+------------+----------+---------+-------+---------+
 1 row in set (0.00 sec)
 
-mysql> select * from customer where customer_name like '%yl%';
+mysql> select * from customer where customer_name like '%yl%';     -- Search customer names containing 'yl'
 +-------------+---------------+-------+-----------------+---------+------------+----------+---------+-------+---------+
 | customer_id | customer_name | city  | email           | address | phone_n0   | pin_code | bill_no | state | country |
 +-------------+---------------+-------+-----------------+---------+------------+----------+---------+-------+---------+
@@ -61,7 +61,7 @@ mysql> select * from customer where customer_name like '%yl%';
 +-------------+---------------+-------+-----------------+---------+------------+----------+---------+-------+---------+
 1 row in set (0.00 sec)
 
-mysql> select * from customer where customer_name like 'ha%';
+mysql> select * from customer where customer_name like 'ha%';     -- Search customer names starting with 'ha'
 +-------------+---------------+--------+--------------------+---------+------------+----------+---------+-------+---------+
 | customer_id | customer_name | city   | email              | address | phone_n0   | pin_code | bill_no | state | country |
 +-------------+---------------+--------+--------------------+---------+------------+----------+---------+-------+---------+
@@ -69,10 +69,7 @@ mysql> select * from customer where customer_name like 'ha%';
 +-------------+---------------+--------+--------------------+---------+------------+----------+---------+-------+---------+
 1 row in set (0.00 sec)
 
-mysql> select * from customer where customer_name like 'h______';
-Empty set (0.00 sec)
-
-mysql> select * from customer where customer_name like 'h_______';
+mysql> select * from customer where customer_name like 'h_ _ _ _ _ _ _';      -- Search names with exact 7 characters after 'h'
 +-------------+---------------+--------+--------------------+---------+------------+----------+---------+-------+---------+
 | customer_id | customer_name | city   | email              | address | phone_n0   | pin_code | bill_no | state | country |
 +-------------+---------------+--------+--------------------+---------+------------+----------+---------+-------+---------+
@@ -80,7 +77,7 @@ mysql> select * from customer where customer_name like 'h_______';
 +-------------+---------------+--------+--------------------+---------+------------+----------+---------+-------+---------+
 1 row in set (0.00 sec)
 
-mysql> select * from customer where address like 'k_____';
+mysql> select * from customer where address like 'k_ _ _ _ _';    -- Search address with 5 characters after 'k'
 +-------------+---------------+--------+--------------------+---------+------------+----------+---------+-------+---------+
 | customer_id | customer_name | city   | email              | address | phone_n0   | pin_code | bill_no | state | country |
 +-------------+---------------+--------+--------------------+---------+------------+----------+---------+-------+---------+
@@ -90,7 +87,7 @@ mysql> select * from customer where address like 'k_____';
 2 rows in set (0.00 sec)
 
 
-mysql> desc customer;
+mysql> desc customer;     -- Describe structure of customer table
 +---------------+--------------+------+-----+---------+-------+
 | Field         | Type         | Null | Key | Default | Extra |
 +---------------+--------------+------+-----+---------+-------+
@@ -107,11 +104,11 @@ mysql> desc customer;
 +---------------+--------------+------+-----+---------+-------+
 10 rows in set (0.01 sec)
 
-mysql> alter table customer change column state state varchar(20) not null;
+mysql> alter table customer change column state state varchar(20) not null;      -- Modify datatype of state column
 Query OK, 0 rows affected (0.05 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 
-mysql> desc customer;
+mysql> desc customer;      -- Display updated table structure
 +---------------+--------------+------+-----+---------+-------+
 | Field         | Type         | Null | Key | Default | Extra |
 +---------------+--------------+------+-----+---------+-------+
@@ -128,7 +125,7 @@ mysql> desc customer;
 +---------------+--------------+------+-----+---------+-------+
 10 rows in set (0.00 sec)
 
-
+-- Insert new customer record
 mysql> INSERT INTO customer
     -> VALUES
     -> ('C104','ashu','pune','ashu@gmail.com','shanivarvada','4567892345','456765','3','maharashtra','India');
@@ -139,7 +136,7 @@ mysql> INSERT INTO customer
     -> ('C105','maya','nashik','maya@gmail.com','mumbai naka','4567892356','456745','3','maharashtra','India');
 Query OK, 1 row affected (0.04 sec)
 
-mysql> select * from customer;
+mysql> select * from customer;    -- Display all customer records
 +-------------+---------------+--------+--------------------+--------------+------------+----------+---------+-------------+---------+
 | customer_id | customer_name | city   | email              | address      | phone_n0   | pin_code | bill_no | state       | country |
 +-------------+---------------+--------+--------------------+--------------+------------+----------+---------+-------------+---------+
@@ -150,7 +147,7 @@ mysql> select * from customer;
 +-------------+---------------+--------+--------------------+--------------+------------+----------+---------+-------------+---------+
 4 rows in set (0.00 sec)
 
-mysql> select distinct city from customer;
+mysql> select distinct city from customer;   -- Display unique cities
 +--------+
 | city   |
 +--------+
@@ -161,7 +158,7 @@ mysql> select distinct city from customer;
 +--------+
 4 rows in set (0.00 sec)
 
-mysql> desc product;
+mysql> desc product;     -- Describe product table
 +----------------+-------------+------+-----+---------+-------+
 | Field          | Type        | Null | Key | Default | Extra |
 +----------------+-------------+------+-----+---------+-------+
@@ -192,7 +189,7 @@ mysql> desc customer;
 +---------------+--------------+------+-----+---------+-------+
 10 rows in set (0.00 sec)
 
-mysql> select * from customer where bill_no<4;
+mysql> select * from customer where bill_no<4;    -- Select customers with bill_no less than 4
 +-------------+---------------+--------+--------------------+--------------+------------+----------+---------+-------------+---------+
 | customer_id | customer_name | city   | email              | address      | phone_n0   | pin_code | bill_no | state       | country |
 +-------------+---------------+--------+--------------------+--------------+------------+----------+---------+-------------+---------+
@@ -203,7 +200,7 @@ mysql> select * from customer where bill_no<4;
 +-------------+---------------+--------+--------------------+--------------+------------+----------+---------+-------------+---------+
 4 rows in set (0.00 sec)
 
-mysql> select * from customer where bill_no<=4;
+mysql> select * from customer where bill_no<=4;           -- Select customers with bill_no less than or equal to 4
 +-------------+---------------+--------+--------------------+--------------+------------+----------+---------+-------------+---------+
 | customer_id | customer_name | city   | email              | address      | phone_n0   | pin_code | bill_no | state       | country |
 +-------------+---------------+--------+--------------------+--------------+------------+----------+---------+-------------+---------+
@@ -214,10 +211,10 @@ mysql> select * from customer where bill_no<=4;
 +-------------+---------------+--------+--------------------+--------------+------------+----------+---------+-------------+---------+
 4 rows in set (0.00 sec)
 
-mysql> select * from customer where bill_no>=4;
+mysql> select * from customer where bill_no>=4;       -- Select customers with bill_no greater than or equal to 4
 Empty set (0.00 sec)
 
-mysql> select * from customer where customer_id between 'C102' and 'C105';
+mysql> select * from customer where customer_id between 'C102' and 'C105';      -- Select customers between customer IDs C102 and C105
 +-------------+---------------+--------+-----------------+--------------+------------+----------+---------+-------------+---------+
 | customer_id | customer_name | city   | email           | address      | phone_n0   | pin_code | bill_no | state       | country |
 +-------------+---------------+--------+-----------------+--------------+------------+----------+---------+-------------+---------+
@@ -227,7 +224,7 @@ mysql> select * from customer where customer_id between 'C102' and 'C105';
 +-------------+---------------+--------+-----------------+--------------+------------+----------+---------+-------------+---------+
 3 rows in set (0.00 sec)
 
-mysql> select * from customer where customer_id not between 'C103' and 'C104';
+mysql> select * from customer where customer_id not between 'C103' and 'C104';   -- Select customers not between customer IDs C103 and C104
 +-------------+---------------+--------+--------------------+-------------+------------+----------+---------+-------------+---------+
 | customer_id | customer_name | city   | email              | address     | phone_n0   | pin_code | bill_no | state       | country |
 +-------------+---------------+--------+--------------------+-------------+------------+----------+---------+-------------+---------+
@@ -237,7 +234,7 @@ mysql> select * from customer where customer_id not between 'C103' and 'C104';
 +-------------+---------------+--------+--------------------+-------------+------------+----------+---------+-------------+---------+
 3 rows in set (0.00 sec)
 
-mysql>  select * from customer;
+mysql>  select * from customer;      -- Display all customer records
 +-------------+---------------+--------+--------------------+--------------+------------+----------+---------+-------------+---------+
 | customer_id | customer_name | city   | email              | address      | phone_n0   | pin_code | bill_no | state       | country |
 +-------------+---------------+--------+--------------------+--------------+------------+----------+---------+-------------+---------+
@@ -248,7 +245,7 @@ mysql>  select * from customer;
 +-------------+---------------+--------+--------------------+--------------+------------+----------+---------+-------------+---------+
 4 rows in set (0.00 sec)
 
-mysql> select * from customer where customer_id in ('C101','C104','C105');
+mysql> select * from customer where customer_id in ('C101','C104','C105');     -- Select specific customer IDs using IN operator
 +-------------+---------------+--------+--------------------+--------------+------------+----------+---------+-------------+---------+
 | customer_id | customer_name | city   | email              | address      | phone_n0   | pin_code | bill_no | state       | country |
 +-------------+---------------+--------+--------------------+--------------+------------+----------+---------+-------------+---------+
@@ -258,7 +255,7 @@ mysql> select * from customer where customer_id in ('C101','C104','C105');
 +-------------+---------------+--------+--------------------+--------------+------------+----------+---------+-------------+---------+
 3 rows in set (0.00 sec)
 
-mysql> select * from customer where email is not null;
+mysql> select * from customer where email is not null;    -- Select customers whose email is not NULL
 +-------------+---------------+--------+--------------------+--------------+------------+----------+---------+-------------+---------+
 | customer_id | customer_name | city   | email              | address      | phone_n0   | pin_code | bill_no | state       | country |
 +-------------+---------------+--------+--------------------+--------------+------------+----------+---------+-------------+---------+
